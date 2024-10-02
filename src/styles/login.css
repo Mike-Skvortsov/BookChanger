@@ -1,0 +1,112 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40rem;
+}
+
+.password + span {
+  margin-top: 25px;
+}
+
+.sign-up {
+  color: #038c73;
+  cursor: pointer;
+}
+
+.login-form {
+  font-weight: normal;
+  color: #734f2f;
+  font-family: "Philosopher", sans-serif;
+  background-color: #bfaea8;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 5px;
+  height: 30rem;
+  width: 40rem;
+  text-align: center;
+}
+
+.login-form h2 {
+  text-align: center;
+}
+
+.login-form label {
+  margin-bottom: 5px;
+}
+
+.button-container {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -20px;
+}
+
+.login-form input {
+  font-family: "Cormorant Infant", serif;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 1rem auto;
+  height: 13.5%;
+  color: white;
+  outline: none;
+  width: 80%;
+  font-size: 18px;
+  padding: 15px 15px; /* This ensures padding is applied uniformly */
+}
+
+.login-form input:focus::placeholder {
+  color: transparent;
+}
+
+.login-form input::placeholder {
+  font-size: 18px;
+  color: white;
+  opacity: 1;
+}
+
+.next-button {
+  background-color: #734f2f;
+}
+
+.next-button:hover {
+  background-color: #673202;
+}
+
+.fly-girl {
+  width: 20rem;
+  height: 18rem;
+  position: absolute;
+  top: 32%;
+  right: 25%;
+  pointer-events: none;
+}
+
+.error-input {
+  border: 1px solid #ff0000 !important;
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  text-align: left;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -15px;
+}
+
+.spacer {
+  margin-top: 20px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: gray;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

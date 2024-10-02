@@ -1,0 +1,159 @@
+.author-detail {
+  align-items: flex-start;
+  padding: 20px;
+  margin: 3rem 10rem 7rem 7rem;
+}
+.author-content {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+}
+.author-image-container {
+  flex-direction: column;
+  width: 500px;
+}
+.author-image {
+  border-radius: 20px;
+  margin-left: 0;
+  object-fit: cover;
+  width: 400px;
+  height: 400px;
+}
+
+.author-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  max-width: 700px;
+}
+
+.author-name {
+  font-family: "Philosopher", sans-serif;
+  font-size: 40px;
+  font-weight: normal;
+  margin: auto;
+}
+
+.author-lifespan {
+  font-size: 18px;
+  color: #f2913d;
+  font-family: "Cormorant Infant", serif;
+}
+
+.author-description {
+  font-family: "Cormorant Infant", serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 20px;
+  max-width: 700px;
+}
+
+.book-image {
+  width: 200px; /* Image takes full width of the card */
+  height: 200px;
+  object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
+  border-radius: 16px; /* Matches the card's border radius */
+  margin-bottom: 0.5rem;
+}
+
+.author-book-title {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+.author-books {
+  position: relative;
+  margin-top: 20px; /* Відступ від основної інформації до списку книг */
+  width: 100%;
+  margin-left: 5rem;
+}
+
+.book-card {
+  max-width: 230px;
+  margin: 10px;
+  background-color: #bfaea8;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  height: auto;
+}
+
+.book-list {
+  display: flex;
+  gap: 50px; /* Spacing between books */
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+.additional-author-photo {
+  width: 50%; /* Adjust width as needed */
+  top: 70px;
+  height: auto; /* Maintain aspect ratio */
+  position: absolute; /* Absolute positioning */
+  right: 0;
+  z-index: 1; /* Make sure the image is layered above other content if necessary */
+  pointer-events: none;
+}
+
+.button-nav {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust es position */
+  z-index: 2; /* Ensure the buttons are above the book list */
+  background-color: white;
+  border: none;
+  font-size: 32px;
+  color: black;
+  cursor: pointer;
+}
+.button-nav:first-of-type {
+  left: -60px; /* Position the left arrow to the left outside of book-list */
+}
+
+.button-nav:last-of-type {
+  right: -50px; /* Position the right arrow to the right outside of book-list */
+}
+
+.button-nav.disabled,
+.button-nav:disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
+.book-navigation {
+  display: flex;
+  align-items: center;
+  position: relative;
+  max-width: 1200px; /* Adjust this value based on the desired container width */
+  margin: 0 auto; /* Center the navigation */
+}
+
+.available-books {
+  font-weight: normal;
+  padding: 4rem 0 1rem 0;
+  font-family: "Philosopher", sans-serif;
+}
+
+.horizontal-bar {
+  height: 2px; /* Adjust the height to your preference */
+  background-color: #038c73; /* Use your theme's accent color or any color you prefer */
+  width: 100%; /* Full width of its container */
+  margin-top: 40px; /* Add some space above the bar */
+  margin-left: 6.2rem;
+}
+
+.additional-author-photo.less-author-photo {
+  top: 300px;
+  right: 100px;
+  width: 700px;
+  height: auto;
+  opacity: 0.9;
+  z-index: -1;
+}

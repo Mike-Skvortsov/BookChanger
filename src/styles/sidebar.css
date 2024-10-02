@@ -1,0 +1,98 @@
+.sidebar {
+  flex: 0 1 250px;
+  font-size: larger;
+  text-align: left;
+  font-family: "Philosopher", sans-serif;
+  margin-right: auto;
+  margin-left: 8%;
+  padding: 5%;
+}
+
+.user-image {
+  width: 16rem;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+  text-align: left;
+  padding-top: 2.938rem;
+  color: black;
+}
+.navigation a {
+  color: black;
+}
+
+nav hr {
+  border: none;
+  height: 0.125rem;
+  background-color: #038c73;
+  margin: 1.25rem 0;
+  width: 16rem;
+}
+
+.navigation a,
+.dop-function {
+  margin-bottom: 3rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dop-function {
+  color: #038c73;
+}
+.photo-container {
+  position: relative;
+  width: fit-content;
+}
+.edit-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  fill: white;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.overlay:hover .edit-icon {
+  fill: #727272;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  border-radius: 10px;
+  width: 16rem;
+  height: 200px;
+}
+
+.navigation a:hover,
+.navigation .active {
+  color: #f2913d;
+}
+
+.clickable-text {
+  padding: 1rem 0;
+}
+
+.confirmation-dialog.delete-profile-dialog {
+  background-color: #bfaea8;
+  border: 0;
+  width: 600px;
+  height: 300px;
+  text-align: center;
+}

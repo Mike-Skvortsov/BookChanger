@@ -1,0 +1,159 @@
+.add-author-form-container {
+  position: relative; /* Add this to set a positioning context for the absolute elements */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  font-family: "Philosopher", sans-serif;
+  margin: 2rem auto;
+  max-width: 900px;
+  gap: 20px;
+}
+.image-upload-container,
+.form-content {
+  margin-top: 80px; /* Adjust as needed to accommodate the header */
+}
+
+.form-content {
+  flex-grow: 1;
+}
+.image-upload-container {
+  flex-shrink: 0;
+  flex-basis: 200px; /* Width of image container */
+  height: auto;
+  margin-right: 2rem;
+}
+
+.author-image-preview,
+.image-upload-label {
+  width: 100%;
+  height: 150px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #7e7e7e;
+  cursor: pointer;
+  position: relative;
+}
+
+.image-upload-label {
+  cursor: pointer;
+}
+
+.image-upload-label:after {
+  content: "";
+  opacity: 0.5;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+}
+.author-image-preview {
+  width: 100%;
+  height: 150px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #7e7e7e;
+  cursor: pointer;
+  object-fit: contain; /* Scales the image down to fit the box without cropping */
+  object-position: center; /* Centers the image within the element */
+}
+
+.form-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-author-form {
+  width: 80%;
+  font-family: "Cormorant Infant", serif;
+}
+
+.form-content h2 {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.add-author-form label {
+  display: block;
+  color: #333;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  margin-left: 10px;
+}
+.add-author-form input[type="date"],
+.add-author-form input[type="text"] {
+  width: 100%;
+}
+.author-form-header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Ensure it's above other content */
+  flex-grow: 1; /* Allows these elements to fill the available horizontal space */
+  text-align: center;
+}
+
+.add-author-form input[type="text"],
+.add-author-form input[type="number"],
+.add-author-form textarea {
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 15px;
+  border: 1.2px solid rgb(67, 67, 67);
+  border-radius: 4px;
+}
+
+.add-author-form button {
+  border: none;
+  cursor: pointer;
+}
+
+.important-days {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.add-author-form textarea#description {
+  resize: none; /* This disables resizing */
+  height: 120px; /* Set a fixed height */
+}
+
+.label-container {
+  display: flex;
+  align-items: center;
+}
+.add-author-form .form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+.authorStatus {
+  height: 43px;
+  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
+.status {
+  margin-left: -10px;
+}

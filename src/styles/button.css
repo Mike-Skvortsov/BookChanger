@@ -1,0 +1,21 @@
+.button {
+  cursor: pointer;
+  border-radius: 5px;
+  width: 108px;
+  height: 51px;
+  text-align: center;
+  border: none;
+  background-color: #d97e4a;
+  color: white;
+  margin-top: 20px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #b15200;
+}
+
+.button.pressed {
+  background-color: #8f3909;
+}

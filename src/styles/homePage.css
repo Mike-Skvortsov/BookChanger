@@ -1,0 +1,17 @@
+.homePage {
+  padding: 4% 12% 1% 12%;
+  font-family: "Philosopher", sans-serif;
+  font-size: large;
+}
+.home-page-h3 {
+  text-align: center;
+}
+.books-section.homePage {
+  width: 100%;
+}
+.image-home-page {
+  display: flex;
+  margin: auto;
+  width: 70%;
+  height: 20%;
+}

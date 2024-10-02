@@ -1,0 +1,161 @@
+.all-content {
+  display: flex;
+  justify-content: flex-start; /* Забезпечує, що елементи починаються з лівого краю */
+  align-items: flex-start; /* Щоб усі елементи вирівнювались по верху */
+}
+
+.books-list {
+  display: flex;
+  justify-content: flex-start; /* Зміна для вирівнювання книг з лівого краю */
+  flex-wrap: wrap;
+  gap: 80px;
+}
+
+.book-item {
+  position: relative;
+  flex: 0 1 270px;
+  max-width: 200px;
+  background-color: #bfaea8;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 320px;
+  overflow: visible;
+}
+
+.book-item img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.book-menu-trigger {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: red;
+  z-index: 2;
+}
+
+.book-menu {
+  position: absolute;
+  right: -118px;
+  top: 35px;
+  background-color: white;
+  border: 2px solid #d97e4a;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.book-menu div {
+  border-bottom: 1px solid #d97e4a;
+  color: black;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.book-menu div:hover {
+  background-color: #f0f0f0;
+}
+
+.bookcase {
+  margin-top: 40px;
+  flex-grow: 1;
+}
+
+.my-bookcase {
+  text-align: start;
+  padding-left: 6rem;
+  font-family: "Philosopher", sans-serif;
+  font-weight: 500;
+  padding-top: 1%;
+  padding-left: 5rem;
+  padding-bottom: 2%;
+}
+
+.author {
+  text-align: end;
+  font-size: 20px;
+  font-family: "Caveat", cursive;
+  margin-bottom: 0px;
+}
+
+.book-item hr {
+  height: 0.125rem;
+  background-color: #d97e4a;
+  width: 80%;
+  margin-right: 0;
+  border: none;
+  justify-content: end;
+  margin-right: -20px;
+}
+
+.title {
+  font-weight: 500;
+  font-family: "Philosopher", sans-serif;
+  text-align: center;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+  max-height: 3em;
+  margin: 10px 0 -20px 0;
+  text-overflow: ellipsis;
+  font-size: 1em;
+}
+
+.announcedPrice {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Cormorant Infant", serif;
+  color: #333;
+  text-align: center;
+}
+
+.note {
+  position: absolute;
+  width: 20%;
+  height: 40%;
+  top: 30px;
+  right: 220px;
+  pointer-events: none;
+}
+
+.material-symbols-outlined.library-add {
+  color: #038c73;
+  font-weight: normal;
+  font-size: 48px;
+  cursor: pointer;
+}
+
+.add-book-icon {
+  padding-left: 50px;
+  vertical-align: middle;
+}
+
+.empty-book-case-text {
+  color: #038c73;
+  font-size: 24px;
+  margin: 35% 150px 30% 75px;
+  font-family: "Philosopher", sans-serif;
+}
+
+.glass {
+  position: absolute;
+  width: 25%;
+  height: 50%;
+  top: 180px;
+  right: 400px;
+  pointer-events: none;
+}

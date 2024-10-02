@@ -1,0 +1,46 @@
+.navbar {
+  background-color: #038c73;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: -1.875rem;
+  box-sizing: border-box;
+  height: 55px;
+}
+.navbar:first-child {
+  padding-left: 9%;
+}
+
+.navbar h3 {
+  margin: 0 0 0 55px;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  font-weight: normal; /* Ensure default state is not bold */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transition for color and background */
+}
+
+.navbar h3:hover {
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.navbar-user-image {
+  width: 2.813rem;
+  height: 2.813rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: 6.438rem;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: inherit; /* or any color you want */
+}

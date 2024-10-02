@@ -1,0 +1,192 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40rem;
+}
+
+.register-container .register-form {
+  margin-top: 4rem;
+  background-color: #bfaea8;
+  font-weight: normal;
+  color: #734f2f;
+  font-family: "Philosopher", sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 5px;
+  width: 40rem;
+  text-align: center;
+  min-height: 30rem;
+}
+
+.register-container .input {
+  font-family: "Cormorant Infant", serif;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0);
+  width: 80%;
+  margin: 1rem auto;
+  height: 60px;
+  text-align: start;
+  color: white;
+  outline: none;
+  padding-left: 5%;
+}
+
+.register-container .input:focus::placeholder {
+  color: transparent;
+}
+
+.register-container .input::placeholder {
+  font-size: 18px;
+  color: white;
+  opacity: 1;
+}
+
+.register-container .next-button {
+  background-color: #734f2f;
+}
+
+.register-container .next-button:hover {
+  background-color: #673202;
+}
+
+.register-container .fly-girl {
+  pointer-events: none;
+  width: 20rem;
+  height: 18rem;
+  position: absolute;
+  top: 32%;
+  right: 25%;
+}
+
+.register-container .error-input {
+  border: 1px solid #ff0000 !important;
+}
+
+.register-container .error-message {
+  color: #ff0000;
+  font-size: 14px;
+  text-align: left;
+  width: 80%;
+  margin-right: auto;
+  margin-top: -15px;
+}
+
+.register-container .image-error {
+  margin-left: 0;
+  margin-top: 10px;
+}
+
+.register-container .spacer {
+  margin-top: 20px;
+}
+
+.register-container input:-webkit-autofill,
+.register-container input:-webkit-autofill:hover,
+.register-container input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #bfaea8 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.register-container .add-user-form-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.register-container .image-upload-container {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  margin-top: -10px;
+  border-radius: 20px;
+}
+
+.register-container .image-upload-label {
+  width: 100px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  background-color: #bfaea8;
+  cursor: pointer;
+}
+
+.register-container .image-input {
+  display: none;
+}
+
+.register-container .user-image-preview {
+  pointer-events: none;
+  border-radius: 20%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.register-container .form-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: -10px;
+}
+
+.register-container .form-content .input {
+  width: 100%;
+  margin: 0;
+}
+
+.register-container .form-content textarea.input {
+  resize: none;
+  height: 120px;
+  padding-top: 20px;
+}
+
+.register-container .button-container {
+  display: flex;
+  margin-top: -20px;
+}
+
+.register-container .first {
+  display: flex;
+}
+
+.register-container .sign-up-title {
+  margin-top: -10px;
+  margin-bottom: 40px;
+}
+
+.register-container .name-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-left: -100px;
+}
+
+.register-container .input.name {
+  width: 80%;
+}
+
+.register-container .register-form {
+  padding: 40px 100px;
+  width: 45rem;
+}
+
+.name-error {
+  align-items: left;
+  padding-top: 25px;
+}
+
+/* Remove the spinner (increment/decrement controls) from the phone input field */
+input[type="tel"]::-webkit-outer-spin-button,
+input[type="tel"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
