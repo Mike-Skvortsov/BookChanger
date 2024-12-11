@@ -1,9 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import AddAuthor from "./components/AddAuthor";
+import { UserContextProvider } from "./contexts/UserContext";
 
 test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+  render(
+    <UserContextProvider>
+      <AddAuthor />{" "}
+    </UserContextProvider>
+  );
+  const linkElement = screen.getByText(/Додати нового автора/i);
   expect(linkElement).toBeInTheDocument();
 });
