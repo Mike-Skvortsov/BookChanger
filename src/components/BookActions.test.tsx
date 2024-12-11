@@ -4,7 +4,7 @@ import BookActions from "./BookActions";
 import { Book } from "../types/BookTypes";
 
 const mockBook: Book = {
-  id: 2,
+  id: 1,
   title: "Test Book",
   announcedPrice: 100,
   image: "test-image-url",
