@@ -4,11 +4,8 @@ import Sidebar from "./Sidebar";
 import { useUserContext } from "../contexts/UserContext";
 import { Book } from "../types/BookTypes";
 import "../styles/bookcase.css"; // Assuming similar styling can be used
-import ConfirmationDialog from "./ConfirmationDialog";
 import SuccessMessage from "./SuccessMessage";
 import { useNavigate } from "react-router-dom";
-import emptyHeart from "../assets/empty-heart.png"; // Path to empty heart icon
-import filledHeart from "../assets/filled-heart.png"; // Path to filled heart icon
 
 const Wishlist = () => {
   const { userId, token } = useUserContext();
