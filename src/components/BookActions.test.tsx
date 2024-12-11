@@ -5,7 +5,7 @@ import { Book } from "../types/BookTypes";
 
 const mockBook: Book = {
   id: 1,
-  title: "Test Book",
+  title: "Tests Book",
   announcedPrice: 100,
   image: "test-image-url",
 };
