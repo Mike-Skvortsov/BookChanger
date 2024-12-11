@@ -99,7 +99,7 @@
 
 .register-container .image-upload-container {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: column;
   margin-top: -10px;
   border-radius: 20px;

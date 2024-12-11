@@ -3,7 +3,7 @@
   color: white;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   margin-bottom: -1.875rem;
   box-sizing: border-box;
   height: 55px;

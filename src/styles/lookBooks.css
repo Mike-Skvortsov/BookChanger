@@ -128,7 +128,7 @@
   text-align: right;
   box-sizing: border-box;
   width: 100%;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: end;
   flex-wrap: wrap;
   font-size: 1.3rem;
@@ -291,6 +291,6 @@
   width: 80%;
   margin-right: 0;
   border: none;
-  justify-content: end;
+  justify-content: flex-end;
   margin-right: -40px;
 }

@@ -94,7 +94,7 @@
 }
 .book-details-owner-rating {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   margin-right: auto;
 }
