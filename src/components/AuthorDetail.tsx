@@ -13,6 +13,7 @@ const AuthorDetail = () => {
   const nextSet = () => {
     setCurrentSet((prev) => prev + 1);
   };
+
   const prevSet = () => {
     setCurrentSet((prev) => (prev > 0 ? prev - 1 : 0));
   };
