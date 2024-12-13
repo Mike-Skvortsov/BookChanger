@@ -69,7 +69,7 @@ const AddBookForm = () => {
       const data = await response.json();
       setGenres(data);
     } catch (error) {
-      console.error("Failed to fetch genres:", error);
+      console.error("Failed to  fetch genres:", error);
     }
   };
 
