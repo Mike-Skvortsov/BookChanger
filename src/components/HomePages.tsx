@@ -15,6 +15,7 @@ const HomePage: React.FC = () => {
     const fetchTopBooks = async () => {
       try {
         const response = await axios.get("/book/topBooks?count=4");
+        console.log("Top books response:", response.data);
         if (response.data) {
           setBooks(response.data);
         }
