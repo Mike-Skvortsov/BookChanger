@@ -1,11 +1,20 @@
 const { Builder, By, until } = require("selenium-webdriver");
+const chrome = require("selenium-webdriver/chrome");
 const assert = require("assert");
 
 describe("UI Tests with Selenium", () => {
   let driver;
 
   beforeAll(async () => {
-    driver = await new Builder().forBrowser("chrome").build();
+    const chromeOptions = new chrome.Options();
+    chromeOptions.addArguments("--headless"); // Режим без графічного інтерфейсу
+    chromeOptions.addArguments("--disable-gpu"); // Вимкнення GPU (для сумісності)
+    chromeOptions.addArguments("--no-sandbox"); // Виправлення для CI/CD середовищ
+    chromeOptions.addArguments("--disable-dev-shm-usage"); // Виправлення проблем пам'яті
+    driver = await new Builder()
+      .forBrowser("chrome")
+      .setChromeOptions(chromeOptions)
+      .build();
   });
 
   afterAll(async () => {
@@ -24,7 +33,7 @@ describe("UI Tests with Selenium", () => {
 
     // Вводимо пароль
     const passwordInput = await driver.findElement(By.id("password"));
-    await passwordInput.sendKeys("qawsed123SS");
+    await passwordInput.sendKeys("#qawsed123SS");
 
     // Клікаємо кнопку "Далі"
     const loginButton = await driver.findElement(By.css(".next-button"));
