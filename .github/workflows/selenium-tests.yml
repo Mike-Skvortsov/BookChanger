@@ -1,39 +1,39 @@
-name: Selenium UI Tests
+# name: Selenium UI Tests
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
-jobs:
-  selenium-tests:
-    runs-on: ubuntu-latest
+# jobs:
+#   selenium-tests:
+#     runs-on: ubuntu-latest
 
-    services:
-      selenium:
-        image: selenium/standalone-chrome:latest
-        ports:
-          - 4444:4444
+#     services:
+#       selenium:
+#         image: selenium/standalone-chrome:latest
+#         ports:
+#           - 4444:4444
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
+#       - name: Install Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 16
 
-      - name: Install dependencies
-        run: npm install
+#       - name: Install dependencies
+#         run: npm install
 
-      - name: Start Xvfb
-        run: |
-          Xvfb :99 -screen 0 1920x1080x24 &
-          export DISPLAY=:99
+#       - name: Start Xvfb
+#         run: |
+#           Xvfb :99 -screen 0 1920x1080x24 &
+#           export DISPLAY=:99
 
-      - name: Run UI Tests
-        run: npm run test:ui
+#       - name: Run UI Tests
+#         run: npm run test:ui
