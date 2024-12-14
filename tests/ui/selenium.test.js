@@ -1,21 +1,11 @@
 const { Builder, By, until } = require("selenium-webdriver");
-const chrome = require("selenium-webdriver/chrome");
 const assert = require("assert");
 
 describe("UI Tests with Selenium", () => {
   let driver;
 
   beforeAll(async () => {
-    const chromeOptions = new chrome.Options();
-    chromeOptions.addArguments("--headless"); // Режим без графічного інтерфейсу
-    chromeOptions.addArguments("--disable-gpu");
-    chromeOptions.addArguments("--no-sandbox");
-    chromeOptions.addArguments("--disable-dev-shm-usage");
-    driver = await new Builder()
-      .forBrowser("chrome")
-      .setChromeOptions(chromeOptions)
-      .build();
-    await driver.manage().setTimeouts({ implicit: 10000 }); // Таймаут на пошук елементів
+    driver = await new Builder().forBrowser("chrome").build();
   });
 
   afterAll(async () => {
@@ -34,14 +24,14 @@ describe("UI Tests with Selenium", () => {
 
     // Вводимо пароль
     const passwordInput = await driver.findElement(By.id("password"));
-    await passwordInput.sendKeys("#qawsed123SS");
+    await passwordInput.sendKeys("qawsed123SS");
 
     // Клікаємо кнопку "Далі"
     const loginButton = await driver.findElement(By.css(".next-button"));
     await loginButton.click();
 
     // Перевіряємо, чи перенаправлено на сторінку профілю
-    await driver.wait(until.urlContains("/profile"), 10000);
+    await driver.wait(until.urlContains("/profile"), 5000);
     const currentUrlAfterLogin = await driver.getCurrentUrl();
     assert.ok(
       currentUrlAfterLogin.includes("/profile"),
@@ -73,14 +63,14 @@ describe("UI Tests with Selenium", () => {
 
     // Завантажуємо зображення
     const fileInput = await driver.findElement(By.id("image"));
-    await fileInput.sendKeys(`${__dirname}\\test-image.jpg`);
+    await fileInput.sendKeys(`./path-to-image/test-image.jpg`);
 
     // Клікаємо на кнопку "Далі"
     const submitButton = await driver.findElement(By.css(".next-button"));
     await submitButton.click();
 
     // Перевіряємо, чи перенаправлено на сторінку додавання книги
-    await driver.wait(until.urlContains("/add-book"), 10000);
+    await driver.wait(until.urlContains("/add-book"), 5000);
     const currentUrlAfterSubmit = await driver.getCurrentUrl();
     assert.ok(
       currentUrlAfterSubmit.includes("/add-book"),
@@ -88,5 +78,5 @@ describe("UI Tests with Selenium", () => {
     );
 
     console.log("Тест успішно пройдено!");
-  }, 60000); // Таймаут 60 секунд
+  });
 });
