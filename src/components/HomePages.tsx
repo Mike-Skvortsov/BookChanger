@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/homePage.css";
 import axios from "../utils/axios";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Book } from "../types/BookTypes"; // Make sure this path is correct
+import { Book } from "../types/BookTypes";
 
 const HomePage: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
@@ -17,7 +17,11 @@ const HomePage: React.FC = () => {
         const response = await axios.get("/book/topBooks?count=4");
         console.log("Top books response:", response.data);
         if (response.data) {
-          setBooks(response.data);
+          if (Array.isArray(response.data)) {
+            setBooks(response.data);
+          } else {
+            console.error("Unexpected response format:", response.data);
+          }
         }
       } catch (error) {
         console.error("Failed to fetch top books", error);
