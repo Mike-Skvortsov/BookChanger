@@ -5,10 +5,10 @@ let driver;
 
 beforeAll(async () => {
   const options = new chrome.Options();
-  options.addArguments("--headless"); // Запуск Chrome у headless режимі
-  options.addArguments("--disable-dev-shm-usage"); // Для обмежень Docker
-  options.addArguments("--no-sandbox"); // Для CI/CD середовища
-  options.addArguments("--disable-gpu"); // Відключає GPU
+  options.addArguments("--headless");
+  options.addArguments("--disable-dev-shm-usage");
+  options.addArguments("--no-sandbox");
+  options.addArguments("--disable-gpu");
 
   driver = await new Builder()
     .forBrowser("chrome")
@@ -26,6 +26,9 @@ describe("UI Tests: Registration Form", () => {
   test("Should register a new user successfully", async () => {
     await driver.get("https://book-changer.vercel.app");
 
+    // Wait for email input to be located
+    await driver.wait(until.elementLocated(By.id("email")), 5000);
+
     const emailInput = await driver.findElement(By.id("email"));
     const passwordInput = await driver.findElement(By.id("password"));
     const nextButton = await driver.findElement(By.css(".next-button"));
@@ -34,7 +37,8 @@ describe("UI Tests: Registration Form", () => {
     await passwordInput.sendKeys("password123");
     await nextButton.click();
 
-    await driver.wait(until.urlContains("/step2"), 5000); // Очікуємо перехід на другий крок
+    // Wait for next step to load
+    await driver.wait(until.urlContains("/step2"), 5000);
     const nameInput = await driver.findElement(By.id("name"));
     const locationInput = await driver.findElement(By.id("location"));
     const descriptionInput = await driver.findElement(By.id("description"));
@@ -45,7 +49,8 @@ describe("UI Tests: Registration Form", () => {
     await descriptionInput.sendKeys("Test description");
     await submitButton.click();
 
-    await driver.wait(until.urlContains("/profile"), 5000); // Очікуємо перехід на сторінку профілю
+    // Wait for profile page to load
+    await driver.wait(until.urlContains("/profile"), 5000);
     const profileHeader = await driver.findElement(By.css(".profile-header"));
     const profileText = await profileHeader.getText();
 
