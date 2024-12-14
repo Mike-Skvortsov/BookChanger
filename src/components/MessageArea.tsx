@@ -23,7 +23,7 @@ const MessageArea: React.FC<MessageAreaProps> = ({ chatId }) => {
   // Створення нового підключення до SignalR
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl("https://localhost:44389/chathub", {
+      .withUrl("https://bookchangerbackend.onrender.com/chathub", {
         accessTokenFactory: () => localStorage.getItem("token") || "",
       })
       .configureLogging(LogLevel.Information)
