@@ -1,6 +1,8 @@
 const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 
+jest.setTimeout(30000); // Таймаут для всіх тестів у цьому файлі
+
 let driver;
 
 beforeAll(async () => {
