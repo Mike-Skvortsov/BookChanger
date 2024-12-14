@@ -1,7 +1,8 @@
 const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
+const fs = require("fs");
 
-jest.setTimeout(30000); // Таймаут для всіх тестів у цьому файлі
+jest.setTimeout(30000); // Таймаут для всього тесту
 
 let driver;
 
@@ -26,36 +27,47 @@ afterAll(async () => {
 
 describe("UI Tests: Registration Form", () => {
   test("Should register a new user successfully", async () => {
-    await driver.get("https://book-changer.vercel.app");
+    try {
+      console.log("Navigating to the app...");
+      await driver.get("https://book-changer.vercel.app");
 
-    // Wait for email input to be located
-    await driver.wait(until.elementLocated(By.id("email")), 5000);
+      console.log("Waiting for email input...");
+      await driver.wait(until.elementLocated(By.id("email")), 15000);
 
-    const emailInput = await driver.findElement(By.id("email"));
-    const passwordInput = await driver.findElement(By.id("password"));
-    const nextButton = await driver.findElement(By.css(".next-button"));
+      const emailInput = await driver.findElement(By.id("email"));
+      const passwordInput = await driver.findElement(By.id("password"));
+      const nextButton = await driver.findElement(By.css(".next-button"));
 
-    await emailInput.sendKeys("testuser@example.com");
-    await passwordInput.sendKeys("password123");
-    await nextButton.click();
+      console.log("Filling out the form...");
+      await emailInput.sendKeys("testuser@example.com");
+      await passwordInput.sendKeys("password123");
+      await nextButton.click();
 
-    // Wait for next step to load
-    await driver.wait(until.urlContains("/step2"), 5000);
-    const nameInput = await driver.findElement(By.id("name"));
-    const locationInput = await driver.findElement(By.id("location"));
-    const descriptionInput = await driver.findElement(By.id("description"));
-    const submitButton = await driver.findElement(By.css(".next-button"));
+      console.log("Waiting for step 2...");
+      await driver.wait(until.urlContains("/step2"), 15000);
 
-    await nameInput.sendKeys("Test User");
-    await locationInput.sendKeys("Kyiv");
-    await descriptionInput.sendKeys("Test description");
-    await submitButton.click();
+      const nameInput = await driver.findElement(By.id("name"));
+      const locationInput = await driver.findElement(By.id("location"));
+      const descriptionInput = await driver.findElement(By.id("description"));
+      const submitButton = await driver.findElement(By.css(".next-button"));
 
-    // Wait for profile page to load
-    await driver.wait(until.urlContains("/profile"), 5000);
-    const profileHeader = await driver.findElement(By.css(".profile-header"));
-    const profileText = await profileHeader.getText();
+      await nameInput.sendKeys("Test User");
+      await locationInput.sendKeys("Kyiv");
+      await descriptionInput.sendKeys("Test description");
+      await submitButton.click();
 
-    expect(profileText).toContain("Test User");
+      console.log("Waiting for profile page...");
+      await driver.wait(until.urlContains("/profile"), 15000);
+      const profileHeader = await driver.findElement(By.css(".profile-header"));
+      const profileText = await profileHeader.getText();
+
+      expect(profileText).toContain("Test User");
+    } catch (err) {
+      console.error("Test failed. Taking screenshot...");
+      await driver.takeScreenshot().then((image) => {
+        fs.writeFileSync("screenshot.png", image, "base64");
+      });
+      throw err;
+    }
   });
 });
