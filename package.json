@@ -11,6 +11,8 @@
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "axios": "^1.7.9",
+    "chromedriver": "^131.0.3",
+    "jest-environment-node": "^29.7.0",
     "jwt-decode": "^4.0.0",
     "modern-normalize": "^2.0.0",
     "react": "^18.2.0",
@@ -19,6 +21,7 @@
     "react-lazy-load-image-component": "^1.6.0",
     "react-router-dom": "^6.22.3",
     "react-select": "^5.8.0",
+    "selenium-webdriver": "^4.27.0",
     "socket.io-client": "^4.7.5",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -27,7 +30,8 @@
     "start": "react-scripts start",
     "build": "CI=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:ui": "jest tests/ui --detectOpenHandles --forceExit"
   },
   "eslintConfig": {
     "extends": [

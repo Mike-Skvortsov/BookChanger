@@ -1,4 +1,4 @@
-name: Frontend CI/CD with Docker Hub and Vercel
+name: Frontend CI/CD with Selenium, Docker Hub, and Vercel
 
 on:
   push:
@@ -44,3 +44,29 @@ jobs:
           VERCEL_PROJECT_NAME: ${{ secrets.VERCEL_PROJECT_NAME }}
         run: |
           npx vercel deploy --prod --token $VERCEL_TOKEN
+
+  selenium-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Selenium UI Tests
+        env:
+          NEXT_PUBLIC_API_BASE_URL: https://bookchangerbackend.onrender.com
+        run: npm run test:ui
