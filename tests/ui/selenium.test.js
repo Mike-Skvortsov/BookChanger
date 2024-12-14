@@ -1,5 +1,6 @@
 const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome"); // Імпорт chrome
+const path = require("path"); // Імпорт модуля для роботи зі шляхами
 const assert = require("assert");
 
 describe("UI Tests with Selenium", () => {
@@ -10,7 +11,7 @@ describe("UI Tests with Selenium", () => {
       .forBrowser("chrome")
       .setChromeOptions(
         new chrome.Options()
-          .headless() // Запуск у headless режимі
+          .addArguments("--headless") // Увімкнення headless-режиму
           .addArguments("--disable-gpu")
           .addArguments("--no-sandbox")
           .addArguments("--disable-dev-shm-usage")
@@ -73,8 +74,9 @@ describe("UI Tests with Selenium", () => {
     );
 
     // Завантажуємо зображення
+    const imagePath = path.resolve(__dirname, "../assets/test-image.jpg");
     const fileInput = await driver.findElement(By.id("image"));
-    await fileInput.sendKeys(`./test-image.jpg`);
+    await fileInput.sendKeys(imagePath);
 
     // Клікаємо на кнопку "Далі"
     const submitButton = await driver.findElement(By.css(".next-button"));
