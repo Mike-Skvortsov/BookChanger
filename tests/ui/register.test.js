@@ -1,17 +1,18 @@
 const { Builder, By, until } = require("selenium-webdriver");
+const chrome = require("selenium-webdriver/chrome");
 
 let driver;
 
 beforeAll(async () => {
+  const options = new chrome.Options();
+  options.addArguments("--headless"); // Запуск Chrome у headless режимі
+  options.addArguments("--disable-dev-shm-usage"); // Для обмежень Docker
+  options.addArguments("--no-sandbox"); // Для CI/CD середовища
+  options.addArguments("--disable-gpu"); // Відключає GPU
+
   driver = await new Builder()
     .forBrowser("chrome")
-    .setChromeOptions(
-      new (require("selenium-webdriver/chrome").Options)()
-        .headless() // Режим headless
-        .addArguments("--disable-dev-shm-usage") // Для обмежень Docker
-        .addArguments("--no-sandbox") // Для CI/CD середовища
-        .addArguments("--disable-gpu") // Деактивує GPU
-    )
+    .setChromeOptions(options)
     .build();
 });
 
