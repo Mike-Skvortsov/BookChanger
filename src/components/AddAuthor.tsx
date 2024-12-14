@@ -77,7 +77,7 @@ const AddAuthorForm = () => {
 
     try {
       const response = await fetch(
-        "https://book-changer.vercel.app/author/create",
+        "https://bookchangerbackend.onrender.com/api/author/create",
         {
           method: "POST",
           headers: {
