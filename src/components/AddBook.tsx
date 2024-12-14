@@ -49,7 +49,9 @@ const AddBookForm = () => {
 
   const fetchAuthors = async () => {
     try {
-      const response = await fetch("https://localhost:44389/api/Author/all");
+      const response = await fetch(
+        "https://bookchangerbackend.onrender.com/api/Author/all"
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -62,7 +64,9 @@ const AddBookForm = () => {
 
   const fetchGenres = async () => {
     try {
-      const response = await fetch("https://localhost:44389/api/Genre");
+      const response = await fetch(
+        "https://bookchangerbackend.onrender.com/api/Genre"
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
