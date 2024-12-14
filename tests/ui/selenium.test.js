@@ -53,7 +53,7 @@ const assert = require("assert");
 
     // Завантажуємо зображення
     const fileInput = await driver.findElement(By.id("image"));
-    await fileInput.sendKeys("C:\Users\MikeIt\source\repos\DiplomaFront\diploma\tests\ui\test-image.jpg");
+    await fileInput.sendKeys(`${__dirname}\\test-image.jpg`);
 
     // Клікаємо на кнопку "Далі"
     const submitButton = await driver.findElement(By.css(".next-button"));
