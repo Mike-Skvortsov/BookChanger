@@ -32,8 +32,10 @@ describe("UI Тести: Додавання книги", () => {
       await driver.get("https://book-changer.vercel.app/login");
 
       // Логін
-      await driver.findElement(By.id("email")).sendKeys("testuser@example.com");
-      await driver.findElement(By.id("password")).sendKeys("testpassword123");
+      await driver
+        .findElement(By.id("email"))
+        .sendKeys("mixaylo.skv@hmail.com");
+      await driver.findElement(By.id("password")).sendKeys("#qawsed123SS");
       await driver.findElement(By.css("button[type='submit']")).click();
 
       console.log("Очікуємо на редирект після логіну...");
