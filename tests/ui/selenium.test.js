@@ -1,10 +1,20 @@
 const { Builder, By, until } = require("selenium-webdriver");
 const assert = require("assert");
 
-(async function testAddAuthorWithLogin() {
-  const driver = await new Builder().forBrowser("chrome").build();
+describe("UI Tests with Selenium", () => {
+  let driver;
 
-  try {
+  beforeAll(async () => {
+    driver = await new Builder().forBrowser("chrome").build();
+  });
+
+  afterAll(async () => {
+    if (driver) {
+      await driver.quit();
+    }
+  });
+
+  it("should log in and add an author", async () => {
     // Відкриваємо сторінку логіну
     await driver.get("https://book-changer.vercel.app/login");
 
@@ -14,7 +24,7 @@ const assert = require("assert");
 
     // Вводимо пароль
     const passwordInput = await driver.findElement(By.id("password"));
-    await passwordInput.sendKeys("#qawsed123SS");
+    await passwordInput.sendKeys("qawsed123SS");
 
     // Клікаємо кнопку "Далі"
     const loginButton = await driver.findElement(By.css(".next-button"));
@@ -68,10 +78,5 @@ const assert = require("assert");
     );
 
     console.log("Тест успішно пройдено!");
-  } catch (error) {
-    console.error("Помилка під час виконання тесту:", error);
-  } finally {
-    // Закриваємо браузер
-    await driver.quit();
-  }
-})();
+  });
+});
