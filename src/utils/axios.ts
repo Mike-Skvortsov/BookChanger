@@ -3,7 +3,7 @@ import axios from "axios";
 console.log("Base URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
 
 const instance = axios.create({
-  baseURL: "bookchangerbackend.onrender.com/api",
+  baseURL: "https://bookchangerbackend.onrender.com/api",
 });
 
 instance.interceptors.request.use(
