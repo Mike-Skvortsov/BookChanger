@@ -5,7 +5,17 @@ describe("UI Tests with Selenium", () => {
   let driver;
 
   beforeAll(async () => {
-    driver = await new Builder().forBrowser("chrome").build();
+    driver = await new Builder()
+      .forBrowser("chrome")
+      .setChromeOptions(
+        new chrome.Options()
+          .headless() // Запуск у headless режимі
+          .addArguments("--disable-gpu")
+          .addArguments("--no-sandbox")
+          .addArguments("--disable-dev-shm-usage")
+          .addArguments("--remote-debugging-port=9222")
+      )
+      .build();
   });
 
   afterAll(async () => {

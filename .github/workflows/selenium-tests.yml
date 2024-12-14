@@ -1,39 +1,33 @@
-name: Selenium UI Tests
+selenium-tests:
+  runs-on: ubuntu-latest
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  services:
+    selenium:
+      image: selenium/standalone-chrome:latest
+      ports:
+        - 4444:4444
 
-jobs:
-  selenium-tests:
-    runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    services:
-      selenium:
-        image: selenium/standalone-chrome:latest
-        ports:
-          - 4444:4444
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Install dependencies
+      run: npm install
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
+    - name: Start Xvfb
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y xvfb
+        Xvfb :99 -screen 0 1920x1080x24 &
+        export DISPLAY=:99
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Start Xvfb
-        run: |
-          Xvfb :99 -screen 0 1920x1080x24 &
-          export DISPLAY=:99
-
-      - name: Run UI Tests
-        run: npm run test:ui
+    - name: Run Selenium UI Tests
+      env:
+        DISPLAY: :99
+        NEXT_PUBLIC_API_BASE_URL: https://bookchangerbackend.onrender.com
+      run: npm run test:ui
