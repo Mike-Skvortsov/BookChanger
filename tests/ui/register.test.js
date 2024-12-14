@@ -2,7 +2,7 @@ const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 const fs = require("fs");
 
-jest.setTimeout(45000); // Збільшуємо таймаут для тесту
+jest.setTimeout(60000); // Збільшений таймаут для тесту
 
 let driver;
 
@@ -25,47 +25,75 @@ afterAll(async () => {
   }
 });
 
-describe("UI Tests: HomePage", () => {
-  test("Should load and display books correctly", async () => {
+describe("UI Тести: Додавання книги", () => {
+  test("Повинно створити нову книгу успішно", async () => {
     try {
-      console.log("Navigating to the HomePage...");
-      await driver.get("https://book-changer.vercel.app/");
+      console.log("Виконуємо вхід у систему...");
+      await driver.get("https://book-changer.vercel.app/login");
 
-      console.log("Waiting for page load...");
-      await driver.wait(async () => {
-        const readyState = await driver.executeScript(
-          "return document.readyState"
-        );
-        return readyState === "complete";
-      }, 20000);
+      // Логін
+      await driver.findElement(By.id("email")).sendKeys("testuser@example.com");
+      await driver.findElement(By.id("password")).sendKeys("testpassword123");
+      await driver.findElement(By.css("button[type='submit']")).click();
 
-      console.log("Checking for the books section...");
-      await driver.wait(until.elementLocated(By.css(".books-section")), 20000);
+      console.log("Очікуємо на редирект після логіну...");
+      await driver.wait(until.urlIs("https://book-changer.vercel.app/"), 20000);
 
-      console.log("Checking if books are displayed...");
-      const books = await driver.findElements(
-        By.css(".book-card-on-looks-books")
+      console.log("Переходимо на сторінку додавання книги...");
+      await driver.get("https://book-changer.vercel.app/add-book");
+
+      console.log("Заповнюємо форму додавання книги...");
+
+      // Назва книги
+      await driver.findElement(By.id("title")).sendKeys("Тестова Книга");
+
+      // Вибір автора
+      const authorSelect = await driver.findElement(By.id("authors"));
+      await authorSelect.findElement(By.css("option[value='1']")).click();
+
+      // Вибір жанру
+      const genreSelect = await driver.findElement(By.id("genres"));
+      await genreSelect.findElement(By.css("option[value='1']")).click();
+
+      // Мова
+      await driver.findElement(By.id("language")).sendKeys("Українська");
+
+      // Ціна
+      await driver.findElement(By.id("announcedPrice")).sendKeys("100");
+
+      // Кількість сторінок
+      await driver.findElement(By.id("pageCount")).sendKeys("300");
+
+      // Стан книги
+      await driver.findElement(By.id("condition")).sendKeys("Новий");
+
+      // Опис книги
+      await driver
+        .findElement(By.id("description"))
+        .sendKeys("Це тестова книга для перевірки UI.");
+
+      console.log("Відправляємо форму...");
+      await driver.findElement(By.css("button[type='submit']")).click();
+
+      console.log("Очікуємо підтвердження або редирект на 'Мої книги'...");
+      await driver.wait(until.urlContains("/myBooks"), 10000);
+
+      const currentUrl = await driver.getCurrentUrl();
+      console.log("Поточний URL:", currentUrl);
+
+      // Перевірка редиректу
+      expect(currentUrl).toContain("/myBooks");
+
+      console.log("Перевіряємо, чи книга створена...");
+      const bookTitle = await driver.findElement(
+        By.xpath("//*[contains(text(), 'Тестова Книга')]")
       );
-
-      expect(books.length).toBeGreaterThan(0); // Перевіряємо, що книги завантажились
-
-      console.log(`Found ${books.length} books.`);
-
-      // Клік на першу книгу
-      if (books.length > 0) {
-        console.log("Clicking on the first book...");
-        const firstBook = books[0];
-        await firstBook.click();
-
-        console.log("Waiting for navigation to the book details...");
-        await driver.wait(until.urlContains("/books/"), 10000);
-
-        const currentUrl = await driver.getCurrentUrl();
-        console.log("Current URL:", currentUrl);
-        expect(currentUrl).toContain("/books/");
-      }
+      expect(bookTitle).toBeTruthy();
+      console.log("Книга успішно створена!");
     } catch (err) {
-      console.error("Test failed. Taking screenshot and saving page source...");
+      console.error(
+        "Тест провалено. Зберігаємо скріншот та вихідний код сторінки..."
+      );
       const pageSource = await driver.getPageSource();
       fs.writeFileSync("pageSource.html", pageSource);
 
