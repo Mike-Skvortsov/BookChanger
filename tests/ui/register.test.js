@@ -31,8 +31,27 @@ describe("UI Tests: Registration Form", () => {
       console.log("Navigating to the app...");
       await driver.get("https://book-changer.vercel.app");
 
+      console.log("Waiting for page load...");
+      await driver.wait(
+        async () => {
+          const readyState = await driver.executeScript(
+            "return document.readyState"
+          );
+          return readyState === "complete";
+        },
+        15000,
+        "Page did not load completely."
+      );
+
       console.log("Waiting for email input...");
-      await driver.wait(until.elementLocated(By.id("email")), 15000);
+      const emailExists = await driver.findElements(By.id("email"));
+      if (emailExists.length === 0) {
+        const pageSource = await driver.getPageSource();
+        fs.writeFileSync("pageSource.html", pageSource);
+        throw new Error(
+          "Email input not found on the page. Page source saved to pageSource.html."
+        );
+      }
 
       const emailInput = await driver.findElement(By.id("email"));
       const passwordInput = await driver.findElement(By.id("password"));
