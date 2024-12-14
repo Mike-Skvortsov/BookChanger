@@ -74,7 +74,7 @@ describe("UI Tests with Selenium", () => {
 
     // Завантажуємо зображення
     const fileInput = await driver.findElement(By.id("image"));
-    await fileInput.sendKeys(`${__dirname}/test-image.jpg`);
+    await fileInput.sendKeys(`./path-to-image/test-image.jpg`);
 
     // Клікаємо на кнопку "Далі"
     const submitButton = await driver.findElement(By.css(".next-button"));
