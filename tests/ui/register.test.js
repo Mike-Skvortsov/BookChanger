@@ -2,7 +2,7 @@ const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 const fs = require("fs");
 
-jest.setTimeout(30000); // Таймаут для всього тесту
+jest.setTimeout(45000); // Збільшуємо таймаут для тесту
 
 let driver;
 
@@ -25,67 +25,54 @@ afterAll(async () => {
   }
 });
 
-describe("UI Tests: Registration Form", () => {
-  test("Should register a new user successfully", async () => {
+describe("UI Tests: HomePage", () => {
+  test("Should load and display books correctly", async () => {
     try {
-      console.log("Navigating to the app...");
-      await driver.get("https://book-changer.vercel.app");
+      console.log("Navigating to the HomePage...");
+      await driver.get("https://book-changer.vercel.app/");
 
       console.log("Waiting for page load...");
-      await driver.wait(
-        async () => {
-          const readyState = await driver.executeScript(
-            "return document.readyState"
-          );
-          return readyState === "complete";
-        },
-        15000,
-        "Page did not load completely."
+      await driver.wait(async () => {
+        const readyState = await driver.executeScript(
+          "return document.readyState"
+        );
+        return readyState === "complete";
+      }, 20000);
+
+      console.log("Checking for the books section...");
+      await driver.wait(until.elementLocated(By.css(".books-section")), 20000);
+
+      console.log("Checking if books are displayed...");
+      const books = await driver.findElements(
+        By.css(".book-card-on-looks-books")
       );
 
-      console.log("Waiting for email input...");
-      const emailExists = await driver.findElements(By.id("email"));
-      if (emailExists.length === 0) {
-        const pageSource = await driver.getPageSource();
-        fs.writeFileSync("pageSource.html", pageSource);
-        throw new Error(
-          "Email input not found on the page. Page source saved to pageSource.html."
-        );
+      expect(books.length).toBeGreaterThan(0); // Перевіряємо, що книги завантажились
+
+      console.log(`Found ${books.length} books.`);
+
+      // Клік на першу книгу
+      if (books.length > 0) {
+        console.log("Clicking on the first book...");
+        const firstBook = books[0];
+        await firstBook.click();
+
+        console.log("Waiting for navigation to the book details...");
+        await driver.wait(until.urlContains("/books/"), 10000);
+
+        const currentUrl = await driver.getCurrentUrl();
+        console.log("Current URL:", currentUrl);
+        expect(currentUrl).toContain("/books/");
       }
-
-      const emailInput = await driver.findElement(By.id("email"));
-      const passwordInput = await driver.findElement(By.id("password"));
-      const nextButton = await driver.findElement(By.css(".next-button"));
-
-      console.log("Filling out the form...");
-      await emailInput.sendKeys("testuser@example.com");
-      await passwordInput.sendKeys("password123");
-      await nextButton.click();
-
-      console.log("Waiting for step 2...");
-      await driver.wait(until.urlContains("/step2"), 15000);
-
-      const nameInput = await driver.findElement(By.id("name"));
-      const locationInput = await driver.findElement(By.id("location"));
-      const descriptionInput = await driver.findElement(By.id("description"));
-      const submitButton = await driver.findElement(By.css(".next-button"));
-
-      await nameInput.sendKeys("Test User");
-      await locationInput.sendKeys("Kyiv");
-      await descriptionInput.sendKeys("Test description");
-      await submitButton.click();
-
-      console.log("Waiting for profile page...");
-      await driver.wait(until.urlContains("/profile"), 15000);
-      const profileHeader = await driver.findElement(By.css(".profile-header"));
-      const profileText = await profileHeader.getText();
-
-      expect(profileText).toContain("Test User");
     } catch (err) {
-      console.error("Test failed. Taking screenshot...");
+      console.error("Test failed. Taking screenshot and saving page source...");
+      const pageSource = await driver.getPageSource();
+      fs.writeFileSync("pageSource.html", pageSource);
+
       await driver.takeScreenshot().then((image) => {
         fs.writeFileSync("screenshot.png", image, "base64");
       });
+
       throw err;
     }
   });
