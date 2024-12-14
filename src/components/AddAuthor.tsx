@@ -65,12 +65,10 @@ const AddAuthorForm = () => {
       name: authorData.name,
       description: authorData.description,
       image: authorData.image,
-      bDay: authorData.bDay
-        ? authorData.bDay.toISOString().substring(0, 10)
-        : null,
+      bDay: authorData.bDay ? new Date(authorData.bDay).toISOString() : null,
       dayOfDeath:
         authorStatus === "deceased" && authorData.dayOfDeath
-          ? authorData.dayOfDeath.toISOString().substring(0, 10)
+          ? new Date(authorData.dayOfDeath).toISOString()
           : null,
     };
     console.log(authorPayload);
