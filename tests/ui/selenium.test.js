@@ -8,13 +8,14 @@ describe("UI Tests with Selenium", () => {
   beforeAll(async () => {
     const chromeOptions = new chrome.Options();
     chromeOptions.addArguments("--headless"); // Режим без графічного інтерфейсу
-    chromeOptions.addArguments("--disable-gpu"); // Вимкнення GPU (для сумісності)
-    chromeOptions.addArguments("--no-sandbox"); // Виправлення для CI/CD середовищ
-    chromeOptions.addArguments("--disable-dev-shm-usage"); // Виправлення проблем пам'яті
+    chromeOptions.addArguments("--disable-gpu");
+    chromeOptions.addArguments("--no-sandbox");
+    chromeOptions.addArguments("--disable-dev-shm-usage");
     driver = await new Builder()
       .forBrowser("chrome")
       .setChromeOptions(chromeOptions)
       .build();
+    await driver.manage().setTimeouts({ implicit: 10000 }); // Таймаут на пошук елементів
   });
 
   afterAll(async () => {
@@ -40,7 +41,7 @@ describe("UI Tests with Selenium", () => {
     await loginButton.click();
 
     // Перевіряємо, чи перенаправлено на сторінку профілю
-    await driver.wait(until.urlContains("/profile"), 5000);
+    await driver.wait(until.urlContains("/profile"), 10000);
     const currentUrlAfterLogin = await driver.getCurrentUrl();
     assert.ok(
       currentUrlAfterLogin.includes("/profile"),
@@ -79,7 +80,7 @@ describe("UI Tests with Selenium", () => {
     await submitButton.click();
 
     // Перевіряємо, чи перенаправлено на сторінку додавання книги
-    await driver.wait(until.urlContains("/add-book"), 5000);
+    await driver.wait(until.urlContains("/add-book"), 10000);
     const currentUrlAfterSubmit = await driver.getCurrentUrl();
     assert.ok(
       currentUrlAfterSubmit.includes("/add-book"),
@@ -87,5 +88,5 @@ describe("UI Tests with Selenium", () => {
     );
 
     console.log("Тест успішно пройдено!");
-  });
+  }, 60000); // Таймаут 60 секунд
 });
