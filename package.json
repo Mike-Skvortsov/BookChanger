@@ -28,8 +28,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --passWithNoTests",
+    "build": "npm run test && cross-env CI=false react-scripts build",
     "eject": "react-scripts eject",
     "test:ui": "jest tests/ui --detectOpenHandles --forceExit"
   },
@@ -62,6 +62,7 @@
     "@types/react-image-crop": "^8.1.6",
     "@types/react-lazy-load-image-component": "^1.6.4",
     "babel-jest": "^29.7.0",
+    "cross-env": "^7.0.3",
     "jest": "^29.7.0",
     "react-scripts": "^5.0.1",
     "ts-jest": "^29.2.5"
